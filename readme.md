@@ -41,15 +41,15 @@ All tests should pass.
 ```bash
 node app.js
 ```
-This will launch the Node server on port 3900. If that port is busy, you can set a different point in config/default.json.
+This will launch the Node server on port 3000. If that port is busy, you can set a different point in config/default.json.
 
 Open up your browser and head over to:
 
-http://localhost:3900/api/categories
+http://localhost:3000/api/categories
 
 You should see the list of categories. That confirms that you have set up everything successfully.
 
-## (Optional) Environment Variables
+## Environment Variables -- this is optional
 
 If you look at config/default.json, you'll see a property called jwtPrivateKey. This key is used to encrypt JSON web tokens. So, for security reasons, it should not be checked into the source control. I've set a default value here to make it easier for you to get up and running with this project. For a production scenario, you should store this key as an environment variable.
 

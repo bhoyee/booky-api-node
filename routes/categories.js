@@ -7,6 +7,7 @@ const auth = require('../middleware/auth');
 const admin = require('../middleware/admin');
 const asyncMiddleware = require('../middleware/async');
  require('express-async-errors');
+ const validateObjectId = require('../middleware/validateObjectId');
 
 //get all categories
 router.get('/', async (req, res) => {
@@ -17,15 +18,15 @@ router.get('/', async (req, res) => {
 });
 
  //get single category by ID
-router.get('/:id', asyncMiddleware(async (req, res) => {
-
-      const category = await Category.findById(req.params.id);
+router.get('/:id', validateObjectId, async (req, res) => {
+       
+       const category = await Category.findById(req.params.id);
 
       if(!category) return res.status(404).send('ID not found');
   
-      res.status(200).send(category); 
+      res.send(category); 
   
-}));
+});
 
 //post a category
 router.post('/', auth, asyncMiddleware(async (req, res) => {
@@ -34,11 +35,12 @@ router.post('/', auth, asyncMiddleware(async (req, res) => {
   
         // validate user input
         const { error } = validate(req.body);
-        if(error) return res.status(404).send(error.details[0].message);
+        if(error) return res.status(400).send(error.details[0].message);
         
         //save to db
         await category.save();
-        res.status(200).send({ status: 200, data: [ category ], message: 'Successful' });      
+         res.send(category);
+       // res.status(200).send({ status: 200, data: [ category ], message: 'Successful' });      
 }));
 
  // update category by ID

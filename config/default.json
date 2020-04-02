@@ -1,3 +1,4 @@
 {
-  "jwkPrivateKey": ""
+  "jwkPrivateKey": "",
+  "db": "mongodb://localhost/bookyDB"
 }

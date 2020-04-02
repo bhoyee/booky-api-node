@@ -17,7 +17,6 @@ app.use('/', (req, res) => {
     res.send('Page not found');
 });
 
-app.listen(port, () => {
-    winston.info(`Server listerning on port ${port}`);
-})
+const server = app.listen(port, () =>  winston.info(`Server listerning on port ${port}`));
 
+module.exports = server;

@@ -50,7 +50,10 @@ const rentalSchema = new mongoose.Schema({
     rentalFee: {
         type: Number,
         min: 0
-    }
+    },
+    dateReturned: { 
+        type: Date
+      },
 });
 
 const Rental = mongoose.model('Rental', rentalSchema);
